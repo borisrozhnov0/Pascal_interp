@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.12)
+project(pascal_inter
+    VERSION 0.1
+    LANGUAGES CXX)
+
+include_directories( BEFORE 
+    ${PROJECT_SOURCE_DIR}/src 
+    ${PROJECT_SOURCE_DIR}/head)
+
+set( LIB_FILES 
+    head/pascal.h src/pascal.cpp)
+add_library(MyLib STATIC  ${LIB_FILES})
+
+add_executable(pascal main.cpp)
+target_link_libraries(pascal PUBLIC MyLib)
+target_include_directories(pascal BEFORE PUBLIC ${PROJECT_SOURCE_DIR}/src)
+
